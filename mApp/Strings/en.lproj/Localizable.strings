@@ -1,0 +1,15 @@
+
+"DETAIL_GENRE_TITLE" = "Genre";
+"DETAIL_DIRECTOR_TITLE" = "Director";
+"DETAIL_WRITER_TITLE" = "Writer";
+"DETAIL_PLOT_TITLE" = "Plot";
+"DETAIL_YEAR_TITLE" = "Year";
+"DETAIL_AWARDS_TITLE" = "Awards";
+"DETAIL_RATING_TITLE" = "Rating";
+"DETAIL_PRODUCTION_TITLE" = "Production";
+"HOME_NO_RESULT_ALERT_TEXT" = "Could not find the movie!";
+"HOME_EMPTY_SEARCH_BAR_ALERT_TEXT" = "Type a movie name!";
+"GLOBAL_SEARCH_BAR_PLACEHOLDER" = "Search";
+"GLOBAL_CANCEL_BUTTON_TITLE" = "Cancel";
+"DETAIL_TYPE_TITLE" = "Type";
+"DETAIL_RUNTIME_TITLE" = "Runtime";
