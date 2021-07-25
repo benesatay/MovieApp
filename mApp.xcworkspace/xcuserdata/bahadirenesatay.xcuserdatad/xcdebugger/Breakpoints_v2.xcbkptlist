@@ -20,94 +20,94 @@
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - aedabcfdc7ecb5f9"
+                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - a40984c91c87794c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "mApp.RelatedMovieCell.data.getter : Swift.Optional&lt;mApp.SearchResponse&gt;"
                   moduleName = "mApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bahadirenesatay/Desktop/P.proj/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
+                  urlString = "file:///Users/bahadirenesatay/Desktop/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
                   endingLineNumber = "23"
-                  offsetFromSymbolStart = "108">
+                  offsetFromSymbolStart = "122">
                </Location>
                <Location
-                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - fa1f0087f604bbc5"
+                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - f0cc38b32d6f7770"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "mApp.RelatedMovieCell.data.setter : Swift.Optional&lt;mApp.SearchResponse&gt;"
                   moduleName = "mApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bahadirenesatay/Desktop/P.proj/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
+                  urlString = "file:///Users/bahadirenesatay/Desktop/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
                   endingLineNumber = "23"
-                  offsetFromSymbolStart = "152">
+                  offsetFromSymbolStart = "159">
                </Location>
                <Location
-                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - 96a58007f791a173"
+                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - 9c76b8332cfa65c4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "mApp.RelatedMovieCell.data.modify : Swift.Optional&lt;mApp.SearchResponse&gt;"
                   moduleName = "mApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bahadirenesatay/Desktop/P.proj/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
+                  urlString = "file:///Users/bahadirenesatay/Desktop/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
                   endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "22">
                </Location>
                <Location
-                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - 4cc0ba104b8e70e5"
+                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - 4613822490e5bc50"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "mApp.RelatedMovieCell.data.modify : Swift.Optional&lt;mApp.SearchResponse&gt; with unmangled suffix &quot;.resume.0&quot;"
                   moduleName = "mApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bahadirenesatay/Desktop/P.proj/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
+                  urlString = "file:///Users/bahadirenesatay/Desktop/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
                   endingLineNumber = "23"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "10">
                </Location>
                <Location
-                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - 4e09bb3549d403a8"
+                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - 44da830192bfcf1d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "mApp.RelatedMovieCell.init(frame: __C.CGRect) -&gt; mApp.RelatedMovieCell"
                   moduleName = "mApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bahadirenesatay/Desktop/P.proj/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
+                  urlString = "file:///Users/bahadirenesatay/Desktop/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
                   endingLineNumber = "23"
-                  offsetFromSymbolStart = "168">
+                  offsetFromSymbolStart = "415">
                </Location>
                <Location
-                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - 9519a390adebd2ac"
+                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - 9fca9ba476801e19"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "mApp.RelatedMovieCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;mApp.RelatedMovieCell&gt;"
                   moduleName = "mApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bahadirenesatay/Desktop/P.proj/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
+                  urlString = "file:///Users/bahadirenesatay/Desktop/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
                   endingLineNumber = "23"
-                  offsetFromSymbolStart = "132">
+                  offsetFromSymbolStart = "321">
                </Location>
             </Locations>
          </BreakpointContent>

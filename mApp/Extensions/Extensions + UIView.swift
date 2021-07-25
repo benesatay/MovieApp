@@ -8,6 +8,15 @@
 import UIKit
 
 extension UIView {
+    func rotate() {
+        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: Double.pi * 2)
+        rotation.duration = 1
+        rotation.isCumulative = true
+        rotation.repeatCount = Float.greatestFiniteMagnitude
+        self.layer.add(rotation, forKey: "rotationAnimation")
+    }
+    
     func addBlurEffect() {
         //set blur effect
         let blurEffect: UIBlurEffect = UIBlurEffect(style: .systemThinMaterialDark)
@@ -53,6 +62,16 @@ extension UIView {
         gradientLayer.colors = colors
         gradientLayer.drawsAsynchronously = true
         self.layer.insertSublayer(gradientLayer, at: 0)
-        
+    }
+    
+    func animateGradient(_ colors: [CGColor], _ duration: CFTimeInterval) {
+        let gradientChangeAnimation = CABasicAnimation(keyPath: "colors")
+        gradientChangeAnimation.duration = duration
+        gradientChangeAnimation.toValue = colors
+        gradientChangeAnimation.fillMode = CAMediaTimingFillMode.forwards
+        gradientChangeAnimation.isRemovedOnCompletion = false
+        guard let sublayer = self.layer.sublayers?[0] else { return }
+        let gradientLayer = sublayer as! CAGradientLayer
+        gradientLayer.add(gradientChangeAnimation, forKey: "colorChange")
     }
 }

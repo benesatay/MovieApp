@@ -38,10 +38,11 @@
 		AB5DA35A26A2F00C002EDF6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB5DA35926A2F00C002EDF6B /* Assets.xcassets */; };
 		AB5DA35D26A2F00C002EDF6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB5DA35B26A2F00C002EDF6B /* LaunchScreen.storyboard */; };
 		AB5DA36526A2F0C6002EDF6B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DA36426A2F0C6002EDF6B /* SplashViewController.swift */; };
+		AB9458DF26AB17EA005B604B /* movie_loader_image.json in Resources */ = {isa = PBXBuildFile; fileRef = AB9458DE26AB17EA005B604B /* movie_loader_image.json */; };
+		ABB4526A26AB1AF600DFC1AC /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABB4526926AB1AF600DFC1AC /* Lobster-Regular.ttf */; };
 		ABCBFA4426A83542008B7141 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCBFA4326A83542008B7141 /* CustomTextField.swift */; };
 		ABD0CC8A26A30D570063D993 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0CC8926A30D570063D993 /* HomeViewController.swift */; };
 		ABD0CC8C26A3136A0063D993 /* ProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0CC8B26A3136A0063D993 /* ProcessingView.swift */; };
-		ABD0CC8E26A318EC0063D993 /* image.json in Resources */ = {isa = PBXBuildFile; fileRef = ABD0CC8D26A318EC0063D993 /* image.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,10 +81,11 @@
 		AB5DA35C26A2F00C002EDF6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB5DA35E26A2F00C002EDF6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB5DA36426A2F0C6002EDF6B /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		AB9458DE26AB17EA005B604B /* movie_loader_image.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = movie_loader_image.json; sourceTree = "<group>"; };
+		ABB4526926AB1AF600DFC1AC /* Lobster-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lobster-Regular.ttf"; sourceTree = "<group>"; };
 		ABCBFA4326A83542008B7141 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		ABD0CC8926A30D570063D993 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		ABD0CC8B26A3136A0063D993 /* ProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingView.swift; sourceTree = "<group>"; };
-		ABD0CC8D26A318EC0063D993 /* image.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = image.json; sourceTree = "<group>"; };
 		DF91F108F2D241D547337281 /* Pods-mApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mApp.release.xcconfig"; path = "Target Support Files/Pods-mApp/Pods-mApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -191,6 +193,7 @@
 				AB189E2E26A5A02B0076F647 /* Inter-Medium.ttf */,
 				AB189E2F26A5A02B0076F647 /* Inter-Regular.ttf */,
 				AB189E3026A5A02B0076F647 /* Inter-SemiBold.ttf */,
+				ABB4526926AB1AF600DFC1AC /* Lobster-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -243,7 +246,7 @@
 		ABD0CC8F26A318F00063D993 /* LottieImage */ = {
 			isa = PBXGroup;
 			children = (
-				ABD0CC8D26A318EC0063D993 /* image.json */,
+				AB9458DE26AB17EA005B604B /* movie_loader_image.json */,
 			);
 			path = LottieImage;
 			sourceTree = "<group>";
@@ -311,8 +314,9 @@
 				AB5DA35D26A2F00C002EDF6B /* LaunchScreen.storyboard in Resources */,
 				AB189E3126A5A02B0076F647 /* Inter-Bold.ttf in Resources */,
 				AB189E3226A5A02B0076F647 /* Inter-Medium.ttf in Resources */,
-				ABD0CC8E26A318EC0063D993 /* image.json in Resources */,
+				AB9458DF26AB17EA005B604B /* movie_loader_image.json in Resources */,
 				AB189E3F26A5A73C0076F647 /* Localizable.strings in Resources */,
+				ABB4526A26AB1AF600DFC1AC /* Lobster-Regular.ttf in Resources */,
 				AB189E3426A5A02B0076F647 /* Inter-SemiBold.ttf in Resources */,
 				AB5DA35A26A2F00C002EDF6B /* Assets.xcassets in Resources */,
 				AB1A8D8E26A3000E00437CA0 /* GoogleService-Info.plist in Resources */,
@@ -472,7 +476,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -528,7 +532,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

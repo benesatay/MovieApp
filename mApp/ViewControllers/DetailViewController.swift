@@ -14,6 +14,7 @@ class DetailViewController: BaseViewController {
     lazy private var contentView = UIView()
     
     lazy private var dismissButton = UIButton()
+    
     lazy private var titleLabel = CustomLabel()
     lazy private var posterView = UIImageView()
     
@@ -65,12 +66,15 @@ class DetailViewController: BaseViewController {
     //MARK: - SERVICES
     
     private func getSelectedMovie() {
+        self.startLoading()
         let req = MovieRequest()
         req.id = _movieID
         ApiManager.getSelectedMovie(req) { response in
+            self.stopLoading()
             let movie = response
             self.updateUI(movie)
         } onError: { error in
+            self.stopLoading()
             self.presentAlert(title: "Error!", message: error)
         }
     }
@@ -107,14 +111,17 @@ class DetailViewController: BaseViewController {
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(2*LARGE_GAP)
             make.left.equalToSuperview().inset(LARGE_GAP)
+            make.right.equalToSuperview().inset(2*LARGE_GAP + 50)
         }
         
         contentView.addSubview(dismissButton)
         dismissButton.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel)
+            make.centerY.equalTo(titleLabel)
             make.right.equalToSuperview().inset(LARGE_GAP)
+            make.size.equalTo(50)
             make.left.equalTo(titleLabel.snp.right).offset(LARGE_GAP)
         }
+        dismissButton.imageView?.contentMode = .scaleAspectFill
         dismissButton.setImage(UIImage(systemName: "xmark"), for: .normal)
         dismissButton.tintColor = .white
         dismissButton.addTarget(self, action: #selector(dismissButtonTapped), for: .touchUpInside)
@@ -177,6 +184,7 @@ class DetailViewController: BaseViewController {
             make.top.equalTo(directorLabel.snp.bottom).offset(LABEL_GAP)
             make.left.equalTo(directorLabel)
             make.width.equalTo(directorLabel)
+            make.bottom.equalTo(genreLabel)
         }
 
         self.contentView.addSubview(plotLabel)

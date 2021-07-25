@@ -8,7 +8,6 @@
 import UIKit
 
 class HomeViewController: BaseViewController {
-    
     private var _movies: [SearchResponse] = []
 
     lazy private var alertLabel = CustomLabel()
@@ -17,28 +16,31 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let cColor = UIColor(hexaRGB: "#926AA6")!.cgColor
-        let colors: [CGColor] = [cColor, UIColor.white.cgColor]
-        self.view.createGradientLayer(colors, startPoint: CGPoint(x: 0.5, y: 1), endPoint: CGPoint(x: 0.5, y: 0))
-        setUI()
+        self.setUI()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     //MARK: - SERVICE
     
     private func getMovies(_ name: String) {
+        self.startLoading()
         let req = MovieRequest()
         req.series = name
         ApiManager.getMovies(req) { response in
-            self.hideAlertLabel()
             if let searchResult = response.search {
                 self._movies = searchResult
                 self.collectionView.updateData(self._movies)
             } else {
-                self.showAlertLabel()
                 self._movies = []
                 self.collectionView.updateData([])
+                self.showAlertLabel()
             }
+            self.stopLoading()
         } onError: { error in
+            self.stopLoading()
             self.presentAlert(title: "Error!", message: error)
         }
     }
@@ -46,13 +48,13 @@ class HomeViewController: BaseViewController {
     //MARK: - METHODS
     
     private func setUI() {
+        self.setGradientLayer()
         searchBar.searchDelegate = self
         self.view.addSubview(searchBar)
         searchBar.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(2.5*LARGE_GAP)
             make.left.right.equalToSuperview().inset(LARGE_GAP)
         }
-        
         collectionView.collectionDelegate = self
         self.view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
@@ -62,9 +64,19 @@ class HomeViewController: BaseViewController {
         }
         self.createAlertLabel()
     }
+    
+    private func setGradientLayer() {
+        self.view.createGradientLayer(
+            [UIColor.systemOrange.cgColor, UIColor.systemRed.cgColor], startPoint: CGPoint(x: 0.5, y: 1),
+            endPoint: CGPoint(x: 0.5, y: 0))
+        let fColor = UIColor(hexaRGB: "#870000")!.cgColor
+        let sColor = UIColor(hexaRGB: "#190A05")!.cgColor
+        let colors: [CGColor] = [sColor, fColor]
+        self.view.animateGradient(colors, 2)
+    }
  
     private func createAlertLabel() {
-        alertLabel.styleText(.big20, .iSemibold, .darkText, .center)
+        alertLabel.styleText(.big20, .iSemibold, .white, .center)
         alertLabel.text = AppLocalization.text(.HOME_EMPTY_SEARCH_BAR_ALERT_TEXT)
         self.view.addSubview(alertLabel)
         alertLabel.snp.makeConstraints { make in
@@ -91,12 +103,14 @@ extension HomeViewController: CollectionViewDelegate {
 
 extension HomeViewController: SearchViewDelegate {
     func searchMovie(_ name: String) {
-        self.getMovies(name)
+        self.hideAlertLabel()
         if name.isEmpty || name == "" {
             alertLabel.text = AppLocalization.text(.HOME_EMPTY_SEARCH_BAR_ALERT_TEXT)
         } else {
             alertLabel.text = AppLocalization.text(.HOME_NO_RESULT_ALERT_TEXT)
         }
+        self.getMovies(name)
+
     }
     
     func reloadData() {

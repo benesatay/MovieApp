@@ -30,6 +30,13 @@ class CustomTextField: UITextField {
     override open func editingRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: _padding)
     }
+
+    private func setUI() {
+        self.layer.cornerRadius = 15
+        self.addShadow(.white, 0.3)
+        self.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+
+    }
     
     public func setReturnKeyType(_ returnKey: UIReturnKeyType) {
         self.returnKeyType = returnKey
@@ -38,15 +45,6 @@ class CustomTextField: UITextField {
     public func setKeyboardAppearance(_ appearance: UIKeyboardAppearance) {
         self.keyboardAppearance = appearance
     }
-
-    private func setUI() {
-        self.layer.cornerRadius = 15
-        self.addShadow(.black, 0.2)
-        let cColor = UIColor(hexaRGB: "#926AA6")
-        self.backgroundColor = cColor?.withAlphaComponent(0.05)
-
-    }
-    
     
     
 }

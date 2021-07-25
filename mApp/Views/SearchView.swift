@@ -41,9 +41,13 @@ class SearchView: BaseView {
         }
         
         textField.font = UIFont(name: Font.name.iRegular.description, size: Font.size.medium16.value)
-        textField.placeholder = AppLocalization.text(.GLOBAL_SEARCH_BAR_PLACEHOLDER)
-        textField.tintColor = UIColor.darkText.withAlphaComponent(0.5)
-        textField.textColor = UIColor.darkText.withAlphaComponent(0.5)
+        let placeholder = AppLocalization.text(.GLOBAL_SEARCH_BAR_PLACEHOLDER)
+        let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: placeholder)
+        let color = UIColor.lightText.withAlphaComponent(0.5)
+        attributedText.addAttribute(.foregroundColor, value: color, range: NSRange(location: 0, length: placeholder.count))
+        textField.attributedPlaceholder = attributedText
+        textField.tintColor = color.withAlphaComponent(0.5)
+        textField.textColor = color.withAlphaComponent(1)
         textField.delegate = self
         textField.setKeyboardAppearance(.alert)
         textField.setReturnKeyType(.search)
@@ -55,7 +59,7 @@ class SearchView: BaseView {
         }
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped(_:)), for: .touchUpInside)
         cancelButton.setTitle(AppLocalization.text(.GLOBAL_CANCEL_BUTTON_TITLE), for: .normal)
-        cancelButton.setTitleColor(.systemPurple, for: .normal)
+        cancelButton.setTitleColor(.white, for: .normal)
     }
     
     private func hideCancelButton() {

@@ -11,6 +11,8 @@ import Kingfisher
 
 class BaseViewController: UIViewController {
     
+    lazy private var processingView: ProcessingView? = nil
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -25,12 +27,34 @@ class BaseViewController: UIViewController {
         setRemoteConfig()
     }
     
+    deinit {
+        cLog("no retain cycle")
+        
+    }
+    
     private func setRemoteConfig() {
         settings.minimumFetchInterval = 0
         remoteConfig.configSettings = settings
     }
-    
+
     //MARK: - PUBLICS
+
+    public func startLoading() {
+        processingView = ProcessingView()
+        self.view.addSubview(processingView!)
+        processingView!.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.left.right.equalToSuperview().inset(5*LARGE_GAP)
+        }
+        self.processingView!.startLoading()
+    }
+    
+    public func stopLoading() {
+        self.processingView!.stopLoading()
+        self.processingView!.removeFromSuperview()
+        self.processingView = nil
+    }
+    
     public func presentAlert(title: String, message: String) {
         let alert = AppAlert(title: title, message: message, preferredStyle: .alert)
         self.present(alert, animated: true)

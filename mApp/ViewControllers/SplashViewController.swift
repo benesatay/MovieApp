@@ -10,7 +10,7 @@ import Network
 
 class SplashViewController: BaseViewController {
     
-    lazy private var label = UILabel()
+    lazy private var label = CustomLabel()
     
     lazy private var monitor = NWPathMonitor()
 
@@ -57,6 +57,10 @@ class SplashViewController: BaseViewController {
     //MARK: - METHODS
     
     private func setUI() {
+        self.view.createGradientLayer([UIColor.systemOrange.cgColor, UIColor.systemRed.cgColor], startPoint: CGPoint(x: 0, y: 0.5), endPoint: CGPoint(x: 1, y: 0.5))
+
+        label.styleText(.large50, .lRegular, .white, .center)
+
         self.view.addSubview(label)
         label.snp.makeConstraints { make in
             make.center.equalToSuperview()

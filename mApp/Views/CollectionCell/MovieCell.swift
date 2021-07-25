@@ -31,6 +31,7 @@ class MovieCell: BaseCollectionCell {
         return imageView
     }()
     
+    lazy private var titleLabel = CustomLabel()
     lazy private var nameLabel = CustomLabel()
 
     lazy private var yearLabel = CustomLabel()
@@ -51,6 +52,7 @@ class MovieCell: BaseCollectionCell {
                     }
                 }
                 yearLabel.text = data.year
+                titleLabel.text = data.title
             }
         }
     }
@@ -60,7 +62,7 @@ class MovieCell: BaseCollectionCell {
     }
     
     private func setUI() {
-        //        self.setCellShadow(shadowOpacity: 0.2, shadowRadius: 20)
+        self.addShadow(.white, 0.3)
         self.layer.cornerRadius = 20
         
         self.addSubview(posterImageView)
@@ -68,44 +70,28 @@ class MovieCell: BaseCollectionCell {
             make.edges.equalToSuperview()
         }
         
-        let voteBG = setBackgroundView(maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
-        self.posterImageView.addSubview(voteBG)
-        voteBG.snp.makeConstraints { make in
-            make.height.equalTo(40)
-            make.width.bottom.equalToSuperview()
-        }
+        yearLabel.styleText(.small12, .iSemibold, .white, .center)
+        yearLabel.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        yearLabel.layer.cornerRadius = self.layer.cornerRadius
+        yearLabel.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
+        yearLabel.edgeInsets = UIEdgeInsets(top: GAP, left: GAP, bottom: GAP, right: GAP)
 
-        let yearColor = UIColor.white
-        yearImageView.image = UIImage(systemName: "calendar")
-        yearImageView.contentMode = .scaleAspectFit
-        yearImageView.tintColor = yearColor
-        voteBG.addSubview(yearImageView)
-        yearImageView.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().inset(GAP)
-            make.centerY.equalToSuperview()
+        self.posterImageView.addSubview(yearLabel)
+        yearLabel.snp.makeConstraints { (make) in
+            make.top.right.equalToSuperview()
         }
+        
+        titleLabel.edgeInsets = UIEdgeInsets(top: GAP, left: GAP, bottom: GAP, right: GAP)
+        titleLabel.styleText(.small12, .iSemibold, .white, .center)
+        titleLabel.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        titleLabel.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
 
-        yearLabel.styleText(.small12, .iRegular, yearColor, .right)
-        voteBG.addSubview(yearLabel)
-        yearLabel.snp.makeConstraints { make in
-            make.left.equalTo(yearImageView.snp.right).offset(SMALL_GAP)
-            make.centerY.equalTo(yearImageView)
-            make.right.equalToSuperview().inset(GAP)
+        self.posterImageView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
         }
     }
-
     
-    private func setBackgroundView(maskedCorners: CACornerMask) -> UIView {
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = .clear
-        backgroundView.addBlurEffect()
-        backgroundView.alpha = 0.8
-        let blurView = backgroundView.subviews[0] as! UIVisualEffectView
-        blurView.layer.maskedCorners = maskedCorners
-        return backgroundView
-    }
-    
-
     private func createNameLabel(_ name: String?) {
         nameLabel.text = name
         nameLabel.styleText(.large26, .iSemibold, .lightText, .center)

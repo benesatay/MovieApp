@@ -15,13 +15,14 @@ struct Font  {
         case iRegular
         case iBold
         case iSemibold
-        
+        case lRegular
         var description : String {
             switch self {
             case .iMedium:      return "Inter-Medium"
             case .iRegular:     return  "Inter-Regular"
             case .iBold:        return "Inter-Bold"
             case .iSemibold:    return "Inter-Semibold"
+            case .lRegular:     return "Lobster-Regular"
             }
         }
     }
@@ -36,7 +37,7 @@ struct Font  {
         case large30
         case large32
         case large40
-        
+        case large50
         var value : CGFloat {
             switch self {
             case .small12:    return 12
@@ -48,6 +49,7 @@ struct Font  {
             case .large30:    return 30
             case .large32:    return 32
             case .large40:    return 40
+            case .large50:    return 50
             }
         }
     }
