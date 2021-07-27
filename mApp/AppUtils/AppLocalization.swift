@@ -22,9 +22,11 @@ class AppLocalization {
         case DETAIL_AWARDS_TITLE
         case DETAIL_PRODUCTION_TITLE
         case HOME_NO_RESULT_ALERT_TEXT
-        case HOME_EMPTY_SEARCH_BAR_ALERT_TEXT
         case GLOBAL_SEARCH_BAR_PLACEHOLDER
         case GLOBAL_CANCEL_BUTTON_TITLE
+        case INTERNET_CONNECTION_ERROR_TEXT
+        case GLOBAL_ERROR_ALERT_TITLE
+        case INTERNET_CONNECTION_QUEUE_LABEL_STRING
         var value: String {
             return self.rawValue
         }
@@ -36,25 +38,4 @@ class AppLocalization {
         }
         return key.value.localized()
     }
-    
-//    class func currentLang() {
-//        AppRoot.selectedLang = Language.init(rawValue: Localize.currentLanguage()) ?? .tr
-//    }
-    
-    
 }
-
-enum Language: String {
-    case tr = "tr"
-    case en = "en"
-    var code: Int {
-        switch self {
-        case .tr:
-            return 1
-        case .en:
-            return 2
-        }
-    }
-    static let list: [Language] = [.tr, .en]
-}
-

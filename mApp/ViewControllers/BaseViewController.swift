@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import Firebase
 
 class BaseViewController: UIViewController {
     
@@ -23,19 +24,19 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
-        setRemoteConfig()
+
     }
     
-    deinit {
-        cLog("no retain cycle")
-        
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
-    private func setRemoteConfig() {
-        settings.minimumFetchInterval = 0
-        remoteConfig.configSettings = settings
-    }
+//    deinit {
+//        cLog("")
+//    }
+    
+
 
     //MARK: - PUBLICS
 
@@ -44,7 +45,7 @@ class BaseViewController: UIViewController {
         self.view.addSubview(processingView!)
         processingView!.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
-            make.left.right.equalToSuperview().inset(5*LARGE_GAP)
+            make.left.right.equalToSuperview().inset(8*LARGE_GAP)
         }
         self.processingView!.startLoading()
     }
@@ -55,16 +56,8 @@ class BaseViewController: UIViewController {
         self.processingView = nil
     }
     
-    public func presentAlert(title: String, message: String) {
+    public func presentAlert(title: String = AppLocalization.text(.GLOBAL_ERROR_ALERT_TITLE), message: String) {
         let alert = AppAlert(title: title, message: message, preferredStyle: .alert)
         self.present(alert, animated: true)
-    }
-    
-    public func pushViewController(_ controller: BaseViewController) {
-        self.navigationController?.pushViewController(controller, animated: true)
-    }
-    
-    public func presentViewController(_ controller: BaseViewController) {
-        self.navigationController?.present(controller, animated: true, completion: nil)
     }
 }

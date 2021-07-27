@@ -11,7 +11,6 @@ class AppConstants {
     enum CollectionCell: String {
         case none
         case movieCell
-        case relatedMovieCell
     }
     
     enum ASCIIControl {

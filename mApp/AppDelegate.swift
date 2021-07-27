@@ -10,15 +10,12 @@ import Firebase
 import FirebaseMessaging
 import UserNotifications
 
-var remoteConfig = RemoteConfig.remoteConfig()
-let settings = RemoteConfigSettings()
-
-
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    lazy var remoteConfig = RemoteConfig.remoteConfig()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -32,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //set firebase
         self.registerRemoteNotification(application)
         FirebaseApp.configure()
-        
+        self.setRemoteConfig()
         return true
     }
 
@@ -133,5 +130,13 @@ extension AppDelegate : MessagingDelegate {
     func messaging(_ messaging: Messaging,
                    didReceiveRegistrationToken fcmToken: String?) {
         cLog((fcmToken ?? ""))
+    }
+}
+
+extension AppDelegate {
+    private func setRemoteConfig() {
+        let settings = RemoteConfigSettings()
+        settings.minimumFetchInterval = 0
+        remoteConfig.configSettings = settings
     }
 }

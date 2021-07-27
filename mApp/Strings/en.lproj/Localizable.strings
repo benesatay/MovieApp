@@ -7,9 +7,11 @@
 "DETAIL_AWARDS_TITLE" = "Awards";
 "DETAIL_RATING_TITLE" = "Rating";
 "DETAIL_PRODUCTION_TITLE" = "Production";
-"HOME_NO_RESULT_ALERT_TEXT" = "Could not find the movie!";
-"HOME_EMPTY_SEARCH_BAR_ALERT_TEXT" = "Type a movie name!";
+"HOME_NO_RESULT_ALERT_TEXT" = "Could not find the content that is named '%@'.";
 "GLOBAL_SEARCH_BAR_PLACEHOLDER" = "Search";
 "GLOBAL_CANCEL_BUTTON_TITLE" = "Cancel";
 "DETAIL_TYPE_TITLE" = "Type";
 "DETAIL_RUNTIME_TITLE" = "Runtime";
+"INTERNET_CONNECTION_ERROR_TEXT" = "No Internet Connection!";
+"GLOBAL_ERROR_ALERT_TITLE" = "Error!";
+"INTERNET_CONNECTION_QUEUE_LABEL_STRING" = "InternetConnectionMonitor";

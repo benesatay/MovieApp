@@ -25,14 +25,12 @@ class ProcessingView: UIView {
     func setupViews() {
         animationView = .init(name: "movie_loader_image")
         self.addSubview(animationView!)
-
         animationView!.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-                    
-          animationView!.contentMode = .scaleAspectFit
-          animationView!.loopMode = .loop
-          animationView!.animationSpeed = 0.2
+        animationView!.contentMode = .scaleAspectFit
+        animationView!.loopMode = .loop
+        animationView!.animationSpeed = 2
     }
     
     public func startLoading() {

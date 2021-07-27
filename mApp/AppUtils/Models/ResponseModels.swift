@@ -1,27 +1,33 @@
 //
-//  Model.swift
+//  ResponseModels.swift
 //  mApp
 //
 //  Created by Bahadır Enes Atay on 18.07.2021.
 //
 
-
 import ObjectMapper
 
+// MARK: - BASE RESPONSE
 class BaseResponse: Mappable, Decodable {
-    required init?(map: Map) {
-        
-    }
+    var title, year, imdbID: String?
+    var type: String?
+    var poster: String?
     
+    required init?(map: Map) {  }
+   
     func mapping(map: Map) {
-  
+        title <- map["Title"]
+        year <- map["Year"]
+        imdbID <- map["imdbID"]
+        type <- map["Type"]
+        poster <- map["Poster"]
+        year <- map["Year"]
     }
 }
 
-// MARK: - Movies Response
-
-class MoviesResponse: BaseResponse {
-    var search: [SearchResponse]?
+// MARK: - SERIES RESPONSE
+class SeriesResponse: BaseResponse {
+    var search: [SearchResponse] = []
     var totalResults, response: String?
 
     override func mapping(map: Map) {
@@ -31,52 +37,26 @@ class MoviesResponse: BaseResponse {
     }
 }
 
-// MARK: - Movies Search Response
+// MARK: - SERIES SEARCH RESPONSE
 class SearchResponse: BaseResponse {
-    var title, year, imdbID: String?
-    var type: String?
-    var poster: String?
-    
     override func mapping(map: Map) {
-        title <- map["Title"]
-        year <- map["Year"]
-        imdbID <- map["imdbID"]
-        type <- map["series"]
-        poster <- map["Poster"]
-        year <- map["Year"]
+        super.mapping(map: map)
     }
 }
 
-enum ProductionType {
-    case movie
-    case series
-    var type: String {
-        switch self {
-        case .movie:
-            return "movie"
-        case .series:
-            return "series"
-        }
-    }
-}
-
-
-// MARK: - Movie Response
-class MovieResponse: BaseResponse {
-    var title, year, rated, released: String?
+// MARK: - CONTENT DETAIL RESPONSE
+class ContentDetailResponse: BaseResponse {
+    var rated, released: String?
     var runtime, genre, director, writer: String?
     var actors, plot, language, country: String?
     var awards: String?
-    var poster: String?
-    var ratings: [Rating]?
-    var metascore, imdbRating, imdbVotes, imdbID: String?
-    var type: String?
+    var ratings: [Rating] = []
+    var metascore, imdbRating, imdbVotes: String?
     var dvd, boxOffice, production: String?
     var website, response: String?
 
     override func mapping(map: Map) {
-        title <- map["Title"]
-        year <- map["Year"]
+        super.mapping(map: map)
         rated <- map["Rated"]
         released <- map["Released"]
         runtime <- map["Runtime"]
@@ -88,13 +68,10 @@ class MovieResponse: BaseResponse {
         language <- map["Language"]
         country <- map["Country"]
         awards <- map["Awards"]
-        poster <- map["Poster"]
         ratings <- map["Ratings"]
         metascore <- map["Metascore"]
         imdbRating <- map["imdbRating"]
         imdbVotes <- map["imdbVotes"]
-        imdbID <- map["imdbID"]
-        type <- map["Type"]
         dvd <- map["DVD"]
         boxOffice <- map["BoxOffice"]
         production <- map["Production"]
@@ -103,7 +80,7 @@ class MovieResponse: BaseResponse {
     }
 }
 
-// MARK: - Rating
+// MARK: - CONTENT DETAIL RATINGS RESPONSE
 class Rating: BaseResponse {
     var source, value: String?
     override func mapping(map: Map) {

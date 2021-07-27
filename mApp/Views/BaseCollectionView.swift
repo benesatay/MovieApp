@@ -53,8 +53,6 @@ class BaseCollectionView: UIView {
         
         if _collectionCell == .movieCell {
             collectionView.register(MovieCell.self, forCellWithReuseIdentifier: _collectionCell.rawValue)
-        } else if _collectionCell == .relatedMovieCell {
-            collectionView.register(RelatedMovieCell.self, forCellWithReuseIdentifier: _collectionCell.rawValue)
         }
         
         self.addSubview(collectionView)
@@ -77,10 +75,9 @@ class BaseCollectionView: UIView {
 extension BaseCollectionView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if _collectionCell == .movieCell || _collectionCell == .relatedMovieCell {
-            if let data = _dataCollection[indexPath.row] as? SearchResponse,
-               let id = data.imdbID {
-                collectionDelegate?.goToController(id)
+        if _collectionCell == .movieCell {
+            if let data = _dataCollection[indexPath.row] as? ContentList.FetchRequest.ViewModel.SeriesData {
+                collectionDelegate?.goToController(data.id)
             }
         } else { }
     }
@@ -94,14 +91,8 @@ extension BaseCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if _collectionCell == .movieCell {
-            let data = _dataCollection[indexPath.row] as? SearchResponse
+            let data = _dataCollection[indexPath.row] as? ContentList.FetchRequest.ViewModel.SeriesData
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: _collectionCell.rawValue, for: indexPath) as! MovieCell
-            cell.data = data
-            return cell
-        }
-        else if _collectionCell == .relatedMovieCell {
-            let data = _dataCollection[indexPath.row] as? SearchResponse
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: _collectionCell.rawValue, for: indexPath) as! RelatedMovieCell
             cell.data = data
             return cell
         }
@@ -116,12 +107,9 @@ extension BaseCollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if _collectionCell == .movieCell {
+//            return self.collectionView.bounds.size
             let cellWidth = (self.frame.width-50)/2
             return CGSize(width: cellWidth, height: cellWidth*2)
-        } else if _collectionCell == .relatedMovieCell {
-            return self.collectionView.bounds.size
-//            let cellWith = (self.frame.width-50)/4
-//            return CGSize(width: cellWith, height: cellWith*3/2)
         } else {
             return .zero
         }

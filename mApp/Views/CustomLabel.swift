@@ -56,7 +56,7 @@ class CustomLabel: UILabel {
         self.styleSubstring(subText, color, subStrFont)
     }
     
-    public func detailStyle(_ text: String) {
+    public func setDetailStyle(with text: String) {
         self.styleText(.medium16, .iMedium, .lightText, .center)
         let lineFeed: AppConstants.ASCIIControl = .lineFeed
         self.text = text + lineFeed.character

@@ -6,9 +6,11 @@
 "DETAIL_AWARDS_TITLE" = "Ödüller";
 "DETAIL_RATING_TITLE" = "Puan";
 "DETAIL_PRODUCTION_TITLE" = "Yapımcı";
-"HOME_NO_RESULT_ALERT_TEXT" = "Aradığın filmi bulamadım";
-"HOME_EMPTY_SEARCH_BAR_ALERT_TEXT" = "Bir film ismi gir!";
+"HOME_NO_RESULT_ALERT_TEXT" = "'%@' isimli içeriği bulamadım.";
 "GLOBAL_SEARCH_BAR_PLACEHOLDER" = "Ara";
 "GLOBAL_CANCEL_BUTTON_TITLE" = "Vazgeç";
 "DETAIL_TYPE_TITLE" = "Tür";
 "DETAIL_RUNTIME_TITLE" = "Süre";
+"INTERNET_CONNECTION_ERROR_TEXT" = "İnternet bağlantısı yok!";
+"GLOBAL_ERROR_ALERT_TITLE" = "Hata!";
+"INTERNET_CONNECTION_QUEUE_LABEL_STRING" = "InternetConnectionMonitor";

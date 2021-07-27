@@ -37,22 +37,22 @@ class MovieCell: BaseCollectionCell {
     lazy private var yearLabel = CustomLabel()
     lazy private var yearImageView = UIImageView()
 
-    public var data: SearchResponse? {
+    public var data: ContentList.FetchRequest.ViewModel.SeriesData? {
         didSet {
             if let data = data {
-                if let urlStr = data.poster, let posterURL = URL(string: urlStr) {
+                if let posterURL = URL(string: data.image) {
                     posterImageView.kf.setImage(with: posterURL)
-                    if urlStr == "N/A" {
+                    if data.image == "N/A" {
                         posterImageView.layer.borderColor = UIColor.black.withAlphaComponent(0.3).cgColor
                         posterImageView.layer.borderWidth = 0.3
-                        self.createNameLabel(data.title)
+                        self.createNameLabel(data.name)
                     } else {
                         self.removeNameLabel()
                         posterImageView.layer.borderWidth = 0
                     }
                 }
                 yearLabel.text = data.year
-                titleLabel.text = data.title
+                titleLabel.text = data.name
             }
         }
     }

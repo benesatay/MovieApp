@@ -7,109 +7,257 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048"
+            uuid = "8D3AD2B2-D43E-495C-BD6E-422F813AD2CC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "mApp/Views/CollectionCell/RelatedMovieCell.swift"
+            filePath = "mApp/ContentListModul/ContentListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "getContents(request:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B9B2AF7F-3BDC-41E5-A8B4-47C4261152D1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mApp/ContentListModul/ContentListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "getSeries(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "480F251C-807B-45D4-988B-EA85FEAE90D6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mApp/ContentListModul/ContentListWorker.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "getMovies(_:onSuccess:onError:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "480F251C-807B-45D4-988B-EA85FEAE90D6 - 2afef2f6e113ad4b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "mApp.ContentListWorker.getMovies(_: mApp.SeriesRequest, onSuccess: (mApp.SeriesResponse) -&gt; (), onError: (Swift.Error) -&gt; ()) -&gt; ()"
+                  moduleName = "mApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bahadirenesatay/Desktop/P.proj/mApp/mApp/ContentListModul/ContentListWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "480F251C-807B-45D4-988B-EA85FEAE90D6 - fb4d60e6fccd7879"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;mApp.SeriesResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in mApp.ContentListWorker.getMovies(_: mApp.SeriesRequest, onSuccess: (mApp.SeriesResponse) -&gt; (), onError: (Swift.Error) -&gt; ()) -&gt; ()"
+                  moduleName = "mApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bahadirenesatay/Desktop/P.proj/mApp/mApp/ContentListModul/ContentListWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "256">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "334AA0A9-5E05-4B98-9E46-13CBAEA67BFD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mApp/ContentListModul/ContentListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getContents(request:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D0F6A7D1-0DB4-4464-BB24-A59941B2801A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mApp/ContentListModul/ContentListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "ContentListInteractorInput"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D0FC8861-6BB9-49A2-88A4-C85231D07BFA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mApp/ContentListModul/ContentListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "ContentListInteractor"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C1AD632A-C961-4F58-B964-10BB9F2BE1E4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mApp/ContentListModul/ContentListWorker.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "getMovies(_:onSuccess:onError:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C1AD632A-C961-4F58-B964-10BB9F2BE1E4 - fb4d60e6fccd7879"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;mApp.SeriesResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in mApp.ContentListWorker.getMovies(_: mApp.SeriesRequest, onSuccess: (mApp.SeriesResponse) -&gt; (), onError: (Swift.Error) -&gt; ()) -&gt; ()"
+                  moduleName = "mApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bahadirenesatay/Desktop/P.proj/mApp/mApp/ContentListModul/ContentListWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "256">
+               </Location>
+               <Location
+                  uuid = "C1AD632A-C961-4F58-B964-10BB9F2BE1E4 - 37d1d33d56a9a421"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;mApp.SeriesResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in mApp.ContentListWorker.getMovies(_: mApp.SeriesRequest, onSuccess: (mApp.SeriesResponse) -&gt; (), onError: (Swift.Error) -&gt; ()) -&gt; ()"
+                  moduleName = "mApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bahadirenesatay/Desktop/P.proj/mApp/mApp/ContentListModul/ContentListWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "116">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A1482009-AB4E-4EA8-89E3-FE2119FA9D22"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mApp/ContentListModul/ContentListWorker.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "getMovies(_:onSuccess:onError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6FA9CB5F-5E96-4D2B-8AFC-43CE71BC4AC2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mApp/ContentListModul/ContentListWorker.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
             endingLineNumber = "23"
-            landmarkName = "data"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - a40984c91c87794c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mApp.RelatedMovieCell.data.getter : Swift.Optional&lt;mApp.SearchResponse&gt;"
-                  moduleName = "mApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bahadirenesatay/Desktop/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "122">
-               </Location>
-               <Location
-                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - f0cc38b32d6f7770"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mApp.RelatedMovieCell.data.setter : Swift.Optional&lt;mApp.SearchResponse&gt;"
-                  moduleName = "mApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bahadirenesatay/Desktop/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "159">
-               </Location>
-               <Location
-                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - 9c76b8332cfa65c4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mApp.RelatedMovieCell.data.modify : Swift.Optional&lt;mApp.SearchResponse&gt;"
-                  moduleName = "mApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bahadirenesatay/Desktop/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "22">
-               </Location>
-               <Location
-                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - 4613822490e5bc50"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mApp.RelatedMovieCell.data.modify : Swift.Optional&lt;mApp.SearchResponse&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "mApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bahadirenesatay/Desktop/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "10">
-               </Location>
-               <Location
-                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - 44da830192bfcf1d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mApp.RelatedMovieCell.init(frame: __C.CGRect) -&gt; mApp.RelatedMovieCell"
-                  moduleName = "mApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bahadirenesatay/Desktop/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "415">
-               </Location>
-               <Location
-                  uuid = "41F6B2B5-8A09-48C3-B409-13B5B648F048 - 9fca9ba476801e19"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mApp.RelatedMovieCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;mApp.RelatedMovieCell&gt;"
-                  moduleName = "mApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bahadirenesatay/Desktop/mApp/mApp/Views/CollectionCell/RelatedMovieCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "321">
-               </Location>
-            </Locations>
+            landmarkName = "getMovies(_:onSuccess:onError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D5FBA771-D835-4B99-9E82-0CB72C3A26C1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mApp/ContentListModul/ContentListWorker.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getMovies(_:onSuccess:onError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68584F88-E060-45E8-807A-E1843A3D4CE4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mApp/DetailModul/DetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "getFetchedDetail(viewModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "121549AD-0C45-4679-8F7B-0B358E3A75CD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mApp/DetailModul/DetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "updateUI(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
