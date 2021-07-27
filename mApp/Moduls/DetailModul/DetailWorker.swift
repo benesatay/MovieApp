@@ -20,6 +20,7 @@ class DetailWorker {
                 return }
             if let response = response {
                 onSuccess(response)
+                
             } else {
                 onError(APIError.dataNotFound.localizedDescription)
             }

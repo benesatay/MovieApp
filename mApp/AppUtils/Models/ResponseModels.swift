@@ -9,13 +9,18 @@ import ObjectMapper
 
 // MARK: - BASE RESPONSE
 class BaseResponse: Mappable, Decodable {
+    required init?(map: Map) {  }
+    func mapping(map: Map) {
+    }
+}
+
+// MARK: - BASE CONTENT RESPONSE
+class BaseContentResponse: BaseResponse {
     var title, year, imdbID: String?
     var type: String?
     var poster: String?
-    
-    required init?(map: Map) {  }
-   
-    func mapping(map: Map) {
+       
+    override func mapping(map: Map) {
         title <- map["Title"]
         year <- map["Year"]
         imdbID <- map["imdbID"]
@@ -29,7 +34,6 @@ class BaseResponse: Mappable, Decodable {
 class SeriesResponse: BaseResponse {
     var search: [SearchResponse] = []
     var totalResults, response: String?
-
     override func mapping(map: Map) {
         search <- map["Search"]
         totalResults <- map["totalResults"]
@@ -38,14 +42,14 @@ class SeriesResponse: BaseResponse {
 }
 
 // MARK: - SERIES SEARCH RESPONSE
-class SearchResponse: BaseResponse {
+class SearchResponse: BaseContentResponse {
     override func mapping(map: Map) {
         super.mapping(map: map)
     }
 }
 
 // MARK: - CONTENT DETAIL RESPONSE
-class ContentDetailResponse: BaseResponse {
+class ContentDetailResponse: BaseContentResponse {
     var rated, released: String?
     var runtime, genre, director, writer: String?
     var actors, plot, language, country: String?
@@ -54,7 +58,6 @@ class ContentDetailResponse: BaseResponse {
     var metascore, imdbRating, imdbVotes: String?
     var dvd, boxOffice, production: String?
     var website, response: String?
-
     override func mapping(map: Map) {
         super.mapping(map: map)
         rated <- map["Rated"]

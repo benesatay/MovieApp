@@ -40,6 +40,8 @@ enum Detail {
                 var plot: String
             }
             var contentData: ContentData
+            
+      
         }
     }
 }

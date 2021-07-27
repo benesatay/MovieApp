@@ -20,28 +20,68 @@ protocol DetailPresentationLogic {
 class DetailPresenter  {
     weak var viewController: DetailDisplayLogic?
 
+    private func getFormattedContent(_ content: Detail.FetchRequest.Response) -> ContentDetailResponse {
+        let data = content.content
+        if data.poster == "N/A" {
+            data.poster = ""
+        }
+        if data.title == "N/A" {
+            data.title = ""
+        }
+        if data.year == "N/A" {
+            data.year = ""
+        }
+        if data.imdbRating == "N/A" {
+            data.imdbRating = ""
+        }
+        if data.director == "N/A" {
+            data.director = ""
+        }
+        if data.writer == "N/A" {
+            data.writer = ""
+        }
+        if data.genre == "N/A" {
+            data.genre = ""
+        }
+        if data.awards == "N/A" {
+            data.awards = ""
+        }
+        if data.production == "N/A" {
+            data.production = ""
+        }
+        if data.type == "N/A" {
+            data.type = ""
+        }
+        if data.runtime == "N/A" {
+            data.runtime = ""
+        }
+        if data.plot == "N/A" {
+            data.plot = ""
+        }
+        return data
+    }
 }
 
 extension DetailPresenter: DetailPresentationLogic {
     func presentDetail(response: Detail.FetchRequest.Response) {
-        let item = response.content
-        if let urlStr = item.poster,
-           let title = item.title,
-           let imdbRating = item.imdbRating,
-           let director = item.director,
-           let writer = item.writer,
-           let year = item.year,
-           let genre = item.genre,
-           let awards = item.awards,
-           let production = item.production,
-           let type = item.type,
-           let runtime = item.runtime,
-           let plot = item.plot {
-            let detail = Detail.FetchRequest.ViewModel.ContentData(image: urlStr, title: title, year: year, rating: imdbRating, director: director, writer: writer, genre: genre, awards: awards, production: production, type: type, runtime: runtime, plot: plot)
-            let viewModel = Detail.FetchRequest.ViewModel(contentData: detail)
-            viewController?.getFetchedDetail(viewModel: viewModel)
+        let item = self.getFormattedContent(response)
+        let urlStr = item.poster ?? ""
+        let title = item.title ?? ""
+        let imdbRating = item.imdbRating ?? ""
+        let director = item.director ?? ""
+        let writer = item.writer ?? ""
+        let year = item.year ?? ""
+        let genre = item.genre ?? ""
+        let awards = item.awards ?? ""
+        let production = item.production ?? ""
+        let type = item.type ?? ""
+        let runtime = item.runtime ?? ""
+        let plot = item.plot ?? ""
+        let detail = Detail.FetchRequest.ViewModel.ContentData(image: urlStr, title: title, year: year, rating: imdbRating, director: director, writer: writer, genre: genre, awards: awards, production: production, type: type, runtime: runtime, plot: plot)
+        let viewModel = Detail.FetchRequest.ViewModel(contentData: detail)
+        viewController?.getFetchedDetail(viewModel: viewModel)
             Logger.shared.logEvent("movie_name", title)
-        }
+        
     }
     
     func presentError(_ error: String) {

@@ -78,22 +78,12 @@ class DetailViewController: BaseViewController {
     }
 
     //MARK: - ACTIONS
-    
     @IBAction func dismissButtonTapped() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    //MARK: - FIREBASE ANALYTICS
-    
-//    func logEvent(_ key: String, _ value: Any) {
-//        FirebaseAnalytics.Analytics.logEvent("detail_screen_viewed", parameters: [
-//            AnalyticsParameterScreenName: "movie_detail_view",
-//            key : value
-//        ])
-//    }
     
     //MARK: - REQUEST CONTENT DATA
-
     private func requestSelectedContentData() {
         self.startLoading()
         let request = ContentDetailRequest()
@@ -105,7 +95,6 @@ class DetailViewController: BaseViewController {
     }
     
     //MARK: - METHODS
-    
     private func setUI() {
         let colors = [UIColor.systemRed, UIColor.systemPurple, UIColor.systemTeal]
         let randomColor = colors.randomElement()
