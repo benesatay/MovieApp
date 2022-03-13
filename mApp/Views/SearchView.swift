@@ -43,7 +43,7 @@ class SearchView: BaseView {
         textField.font = UIFont(name: Font.name.iRegular.description, size: Font.size.medium16.value)
         let placeholder = AppLocalization.text(.GLOBAL_SEARCH_BAR_PLACEHOLDER)
         let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: placeholder)
-        let color = UIColor.lightText.withAlphaComponent(0.5)
+        let color = UIColor.black
         attributedText.addAttribute(.foregroundColor, value: color, range: NSRange(location: 0, length: placeholder.count))
         textField.attributedPlaceholder = attributedText
         textField.tintColor = color.withAlphaComponent(0.5)
@@ -59,7 +59,7 @@ class SearchView: BaseView {
         }
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped(_:)), for: .touchUpInside)
         cancelButton.setTitle(AppLocalization.text(.GLOBAL_CANCEL_BUTTON_TITLE), for: .normal)
-        cancelButton.setTitleColor(.white, for: .normal)
+        cancelButton.setTitleColor(.black, for: .normal)
     }
     
     private func hideCancelButton() {
@@ -109,11 +109,31 @@ class SearchView: BaseView {
         let text = self.getFormattedText(textField.text ?? "")
         return text
     }
+    
+    private func searchMovie(_ text: String?) {
+        if let text = text {
+            let movieName = self.getFormattedText(text)
+            searchDelegate?.searchMovie(movieName)
+        }
+    }
 }
 
 //MARK: - EXTENSIONS
 
 extension SearchView: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string == "" {
+            searchMovie(textField.text)
+            return true
+        } else {
+            let enteredText: String = textField.text ?? ""
+            textField.text = enteredText.appending(string)
+            searchMovie(textField.text)
+            return false
+        }
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.showCancelButton()
     }
@@ -121,17 +141,4 @@ extension SearchView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.hideCancelButton()
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let text = textField.text {
-            let movieName = self.getFormattedText(text)
-            searchDelegate?.searchMovie(movieName)
-            self.endEditing(true)
-            return true
-        }
-        return false
-    }
-    
-    
-
 }

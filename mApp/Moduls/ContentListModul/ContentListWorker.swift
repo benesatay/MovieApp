@@ -13,18 +13,19 @@
 import UIKit
 
 class ContentListWorker {
-    func getMovies(_ req: SeriesRequest, onSuccess: @escaping (SeriesResponse) -> Void, onError: @escaping (Error) -> Void) {
-        RequestManager.get(.series, SeriesResponse.self, req.toJSON()) { response, error in
-            DispatchQueue.main.async {
-                guard error == nil else {
-                    onError(error!)
-                    return }
-                if let response = response {
-                    onSuccess(response)
-                } else {
-                    onError(APIError.dataNotFound)
-                }
-            }
+    
+    func fetchSeries(_ req: SeriesRequest) async -> (model: SeriesResponse?, error: Error?) {
+        await RequestManager.cancelRequest()
+        let model = Task { () -> SeriesResponse in
+            let params = req.convertToDictionary()
+            let data = try await RequestManager.request(.series, params)
+            return try JSONDecoder().decode(SeriesResponse.self, from: data)
+        }
+        
+        do {
+            return try await (model: model.value, error: nil)
+        } catch {
+            return (model: nil, error: error)
         }
     }
 }
@@ -37,8 +38,6 @@ enum APIError: LocalizedError {
         switch self {
         case .dataNotFound:
             return "Data Not Found"
-        default:
-            return "Unexpected!"
         }
     }
     

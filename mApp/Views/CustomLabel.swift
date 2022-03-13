@@ -34,7 +34,7 @@ class CustomLabel: UILabel {
         self.defaultLabel()
     }
     
-    //MARK: - METHODS
+    //MARK: - Private Methods
 
     private func defaultLabel() {
         self.backgroundColor = .clear
@@ -46,21 +46,21 @@ class CustomLabel: UILabel {
         self.clipsToBounds = true
     }
     
-    //MARK: - PUBLICS
+    //MARK: - Public Methods
     
-    public func appendAndFormatText(_ subText: String, _ text: String, _ mainColor: UIColor = .lightText) {
+    public func setText(_ subText: String, _ text: String, _ mainColor: UIColor = .darkText) {
         self.text?.append(text)
         self.textColor = mainColor
-        let color: UIColor = .white
-        let subStrFont = UIFont(name: Font.name.iMedium.description, size: Font.size.big18.value)
+        let color: UIColor = mainColor
+        let subStrFont = UIFont(name: Font.name.iMedium.description, size: Font.size.medium16.value)
         self.styleSubstring(subText, color, subStrFont)
     }
     
     public func setDetailStyle(with text: String) {
-        self.styleText(.medium16, .iMedium, .lightText, .center)
+        self.styleText(.normal14, .iMedium, .secondaryLabel, .center)
         let lineFeed: AppConstants.ASCIIControl = .lineFeed
         self.text = text + lineFeed.character
-        self.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        self.backgroundColor = .white
         self.layer.cornerRadius = 10
         self.edgeInsets = UIEdgeInsets(top: SMALL_GAP, left: SMALL_GAP, bottom: SMALL_GAP, right: SMALL_GAP)
     }

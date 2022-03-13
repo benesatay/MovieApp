@@ -21,7 +21,7 @@ class DetailPresenter  {
     weak var viewController: DetailDisplayLogic?
 
     private func getFormattedContent(_ content: Detail.FetchRequest.Response) -> ContentDetailResponse {
-        let data = content.content
+        var data = content.content
         if data.poster == "N/A" {
             data.poster = ""
         }

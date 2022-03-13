@@ -14,7 +14,7 @@
 import UIKit
 
 protocol ContentListInteractorInput: AnyObject {
-    func getContents(request: SeriesRequest)
+    func fetchContents(request: SeriesRequest)
 }
 
 class ContentListInteractor {
@@ -22,22 +22,22 @@ class ContentListInteractor {
 }
 
 extension ContentListInteractor: ContentListInteractorInput {
-    func getContents(request: SeriesRequest) {
-        ContentListWorker().getMovies(request, onSuccess: { [weak self] series in
-            self?.presenter?.presentSeries(response: ContentList.FetchRequest.Response(series: series.search, keyword: request.series!))
-        }, onError: { [weak self] error in
-            self?.presenter?.presentError(error)
-        })
+    func fetchContents(request: SeriesRequest) {
+        Task {
+            let response = await ContentListWorker().fetchSeries(request)
+
+            if let seriesModel = response.model, let keyword = request.series {
+                let response = ContentList.FetchRequest.Response(series: seriesModel.search ?? [], keyword: keyword)
+                DispatchQueue.main.async {
+                    self.presenter?.presentSeries(response: response)
+                }
+            }
+            
+            if let error = response.error {
+                DispatchQueue.main.async {
+                    self.presenter?.presentError(error.localizedDescription)
+                }
+            }
+        }
     }
 }
-
-//enum ContentListError: LocalizedError {
-//    case contentNotFound(String)
-//
-//    var description: String {
-//        switch self {
-//        case .contentNotFound(let keyword):
-//            return String(format: AppLocalization.text(.HOME_NO_RESULT_ALERT_TEXT), keyword)
-//        }
-//    }
-//}

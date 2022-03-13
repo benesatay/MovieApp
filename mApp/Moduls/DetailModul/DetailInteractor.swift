@@ -13,7 +13,7 @@
 import UIKit
 
 protocol DetailBusinessLogic {
-    func getDetail(request: ContentDetailRequest)
+    func fetchDetail(request: ContentDetailRequest)
 }
 
 class DetailInteractor {
@@ -22,11 +22,22 @@ class DetailInteractor {
 }
 
 extension DetailInteractor: DetailBusinessLogic {
-    func getDetail(request: ContentDetailRequest) {
-        DetailWorker().getSelectedMovie(request) { [weak self] response in
-            self?.presenter?.presentDetail(response: Detail.FetchRequest.Response(content: response))
-        } onError: { [weak self] error in
-            self?.presenter?.presentError(error)
+    func fetchDetail(request: ContentDetailRequest) {
+        Task {
+            let response = await DetailWorker().fetchSelectedMovie(request)
+            
+            if let error = response.error {
+                DispatchQueue.main.async {
+                    self.presenter?.presentError(error.localizedDescription)
+                }
+            }
+            
+            if let detailModel = response.model {
+                let response = Detail.FetchRequest.Response(content: detailModel)
+                DispatchQueue.main.async {
+                    self.presenter?.presentDetail(response: response)
+                }
+            }
         }
     }
 }

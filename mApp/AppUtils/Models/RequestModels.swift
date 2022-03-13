@@ -5,48 +5,61 @@
 //  Created by Bahadır Enes Atay on 18.07.2021.
 //
 
-import ObjectMapper
+import Foundation
 
 //MARK: - BASE REQUEST
-class BaseRequest: NSObject, Mappable {
-    override init() {
-        super.init()
-    }
-    
-    required init?(map: Map) {
-    }
-    
-    func mapping(map: Map) {
+protocol BaseRequest: Codable {
+
+}
+
+extension BaseRequest {
+    func convertToDictionary() -> Dictionary<String, Any>? {
+        var dict: Dictionary<String, Any>? = nil
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(self)
+            dict = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String, Any>
+        } catch {
+            print(error)
+        }
+        return dict
     }
 }
 
 //MARK: - BASE DIGITAL CONTENT REQUEST
-class DigitalContentRequest: BaseRequest {
+struct DigitalContentRequest: BaseRequest {
     var title: String?
     var year: String?
-    override func mapping(map: Map) {
-//        title <- map["t"]
-//        year <- map["y"]
+    
+    enum CodingKeys: String, CodingKey {
+        case title = "t"
+        case year = "y"
     }
 }
 
 //MARK: - SERIES REQUEST
-class SeriesRequest: DigitalContentRequest {
+struct SeriesRequest: BaseRequest {
+    var title: String?
+    var year: String?
     var series: String?
-    override func mapping(map: Map) {
-        series <- map["s"]
+    
+    enum CodingKeys: String, CodingKey {
+        case series = "s"
     }
 }
 
 //MARK: - SELECTED DIGITAL CONTENT DETAIL REQUEST
-class ContentDetailRequest: DigitalContentRequest {
+struct ContentDetailRequest: BaseRequest {
+    var title: String?
+    var year: String?
     var id: String?
     var plot: String?
-    override func mapping(map: Map) {
-        id <- map["i"]
-        plot <- map["plot"]
+    enum CodingKeys: String, CodingKey {
+        case id = "i"
+        case plot = "plot"
     }
 }
+
 
 enum PlotType {
     case full

@@ -53,17 +53,4 @@ class SplashViewController: BaseViewController {
     private func updateUI(_ text: String) {
         label.text = text
     }
-
-
-    
-//    private func getFontName() {
-//        for family: String in UIFont.familyNames
-//        {
-//            print(family)
-//            for names: String in UIFont.fontNames(forFamilyName: family)
-//            {
-//                print("== \(names)")
-//            }
-//        }
-//    }
 }

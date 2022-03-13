@@ -8,8 +8,6 @@
 import XCTest
 @testable import mApp
 import Alamofire
-import ObjectMapper
-import AlamofireObjectMapper
 
 class mAppTests: XCTestCase {
 

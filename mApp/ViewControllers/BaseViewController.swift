@@ -24,36 +24,34 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addLoader()
     }
     
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-//    deinit {
-//        cLog("")
-//    }
-    
 
-
-    //MARK: - PUBLICS
-
-    public func startLoading() {
+    private func addLoader() {
         processingView = ProcessingView()
         self.view.addSubview(processingView!)
         processingView!.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.left.right.equalToSuperview().inset(8*LARGE_GAP)
         }
+        self.processingView?.isHidden = true
+    }
+    
+    //MARK: - Publics
+
+    public func startLoading() {
         self.processingView!.startLoading()
+        self.processingView?.isHidden = false
     }
     
     public func stopLoading() {
         self.processingView!.stopLoading()
-        self.processingView!.removeFromSuperview()
-        self.processingView = nil
+        self.processingView?.isHidden = true
     }
     
     public func presentAlert(title: String = AppLocalization.text(.GLOBAL_ERROR_ALERT_TITLE), message: String) {

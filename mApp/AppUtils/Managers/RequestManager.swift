@@ -6,12 +6,11 @@
 //
 
 import Alamofire
-import ObjectMapper
-import AlamofireObjectMapper
 import UIKit
 
 class RequestManager {
-    class func get<T: Mappable>(_ endpoint: Service.Enpoints, _ obj: T.Type, _ params:[String:Any]? = nil, completion: @escaping (T?, Error?) -> Void) {
+    
+    class func request(_ endpoint: Service.Enpoints, _ params:[String:Any]? = nil) async throws -> Data {
         let URL = endpoint.url
         let method = endpoint.method
         let encoding = endpoint.encoding
@@ -19,13 +18,28 @@ class RequestManager {
         var parameters = params
         parameters?.updateValue(Service.apiKey, forKey: "apiKey")
         
-        AF.request(URL, method: method, parameters: parameters, encoding: encoding).responseObject { (response: DataResponse<T,AFError>) in
-            let result = response.result
-            switch result {
-            case .success(let data):
-                completion(data, nil)
-            case .failure(let err):
-                completion(nil,err)
+        return try await withCheckedThrowingContinuation({ continuation in
+            AF.request(URL, method: method, parameters: parameters, encoding: encoding).validate().responseData { response in
+                if let error = response.error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+
+                if let data = response.data {
+                    continuation.resume(returning: data)
+                    return
+                }
+                fatalError("should not get here")
+            }
+        })
+    }
+    
+    class func cancelRequest() async {
+        await withTaskCancellationHandler {
+            Alamofire.Session.default.cancelAllRequests()
+        } operation: {
+            await withCheckedContinuation { continuation in
+                continuation.resume()
             }
         }
     }
@@ -60,37 +74,5 @@ struct Service {
                 return URLEncoding.queryString
             }
         }
-
-//        public var headers: HTTPHeaders {
-//            switch self {
-//            default:
-//
-//            }
-//        }
-
-//        private var relativeURL: String {
-//            switch self {
-//            case .series:
-//
-//            case .content:
-//
-//            }
-//        }
-
-//        private var concept: String {
-//            switch self {
-//            case .series:
-
-//            case.content :
-//
-//            }
-//        }
     }
-
-//    enum Params: String {
-//       
-//
-//    }
-
-
 }
