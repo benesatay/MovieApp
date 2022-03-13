@@ -83,7 +83,6 @@ class DetailViewController: BaseViewController {
     }
     
     
-    //MARK: - REQUEST CONTENT DATA
     private func requestSelectedContentData() {
         self.startLoading()
         let request = ContentDetailRequest()
