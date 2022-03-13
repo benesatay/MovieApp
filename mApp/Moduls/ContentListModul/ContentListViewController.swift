@@ -13,8 +13,8 @@
 import UIKit
 
 protocol ContentListDisplayLogic: AnyObject {
-    func getFetchedSeries(_ viewModel: ContentList.FetchRequest.ViewModel)
-    func presentError(_ error: Error)
+    func displaySeries(_ viewModel: ContentList.FetchRequest.ViewModel)
+    func displayError(_ error: String)
 }
 
 class ContentListViewController: BaseViewController {
@@ -55,17 +55,19 @@ class ContentListViewController: BaseViewController {
         
     }
     
-    //MARK: - SERVICE
+    //MARK: - Request
+    
     private func getSeries(_ name: String) {
         self.startLoading()
-        let request = SeriesRequest()
+        var request = SeriesRequest()
         request.series = name
-        interactor?.getContents(request: request)
+        interactor?.fetchContents(request: request)
     }
     
-    //MARK: - METHODS
+    //MARK: - Private Methods
+    
     private func setUI() {
-        self.setGradientLayer()
+        view.backgroundColor = .white
         searchBar.searchDelegate = self
         self.view.addSubview(searchBar)
         searchBar.snp.makeConstraints { make in
@@ -88,16 +90,6 @@ class ContentListViewController: BaseViewController {
         }
         alertLabel.isHidden = true
     }
-    
-    private func setGradientLayer() {
-        self.view.createGradientLayer(
-            [UIColor.systemOrange.cgColor, UIColor.systemRed.cgColor], startPoint: CGPoint(x: 0.5, y: 1),
-            endPoint: CGPoint(x: 0.5, y: 0))
-        let fColor = UIColor(hexaRGB: "#870000")!.cgColor
-        let sColor = UIColor(hexaRGB: "#190A05")!.cgColor
-        let colors: [CGColor] = [sColor, fColor]
-        self.view.animateGradient(colors, 2)
-    }
 
     private func showAlertLabel() {
         alertLabel.isHidden = false
@@ -108,20 +100,16 @@ class ContentListViewController: BaseViewController {
     }
 }
 
-//MARK: - PRESENT SERIES/ERROR EXTENSION
+//MARK: - Display Logic
 extension ContentListViewController: ContentListDisplayLogic {
-    func presentError(_ error: Error) {
-        self.presentAlert(message: error.localizedDescription)
+    func displayError(_ error: String) {
+        self.presentAlert(message: error)
         self.stopLoading()
     }
     
-    func getFetchedSeries(_ viewModel: ContentList.FetchRequest.ViewModel) {
+    func displaySeries(_ viewModel: ContentList.FetchRequest.ViewModel) {
         if viewModel.seriesData.count > 0 {
             self.collectionView.updateData(viewModel.seriesData)
-            self.hideAlertLabel()
-        } else {
-            self.showAlertLabel()
-            self.alertLabel.text = String(format: AppLocalization.text(.HOME_NO_RESULT_ALERT_TEXT), viewModel.keyword)
         }
         self.stopLoading()
     }

@@ -17,7 +17,6 @@ protocol DetailDisplayLogic: AnyObject {
     func presentError(_ error: String)
 }
 
-
 class DetailViewController: BaseViewController {
     
     var interactor: DetailBusinessLogic?
@@ -45,7 +44,34 @@ class DetailViewController: BaseViewController {
     
     lazy private var plotLabel = CustomLabel()
     
+    private enum RatingColor {
+        case low
+        case medium
+        case high
+
+        var color: UIColor {
+            switch self {
+            case .low: return .systemRed
+            case .medium: return .systemOrange
+            case .high: return .systemGreen
+            }
+        }
+
+        static func setColor(_ rating: Double) -> RatingColor {
+            var color: RatingColor = .low
+            if rating < 5 {
+                color = .low
+            } else if rating >= 5 && rating < 8 {
+                color = .medium
+            } else {
+                color = .high
+            }
+            return color
+        }
+    }
+    
     private let _movieID: String
+    
     init(_ movieID: String) {
         self._movieID = movieID
         super.init()
@@ -76,36 +102,23 @@ class DetailViewController: BaseViewController {
         self.setUI()
         self.requestSelectedContentData()
     }
-
-    //MARK: - ACTIONS
-    @IBAction func dismissButtonTapped() {
-        self.dismiss(animated: true, completion: nil)
-    }
     
-    
-    //MARK: - REQUEST CONTENT DATA
+    //MARK: - Requests
     private func requestSelectedContentData() {
         self.startLoading()
-        let request = ContentDetailRequest()
+        var request = ContentDetailRequest()
         request.id = _movieID
-        if let plotType = PlotType.full.description {
-            request.plot = plotType
-        }
-        interactor?.getDetail(request: request)
+        if let plotType = PlotType.full.description { request.plot = plotType }
+        interactor?.fetchDetail(request: request)
     }
     
-    //MARK: - METHODS
+    //MARK: - Methods
     private func setUI() {
-        let colors = [UIColor.systemRed, UIColor.systemPurple, UIColor.systemTeal]
-        let randomColor = colors.randomElement()
-        self.view.createGradientLayer(
-            [UIColor.black.cgColor , randomColor!.cgColor],
-            startPoint: CGPoint(x: 0.75, y: 1), endPoint: CGPoint(x: 1, y: 0))
-        
+        self.view.backgroundColor = UIColor(red: 246/256, green: 246/256, blue: 246/256, alpha: 1)
         self.view.addSubview(scrollView)
         scrollView.showsVerticalScrollIndicator = false
         scrollView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(GAP)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.left.right.equalToSuperview()
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview()
@@ -120,41 +133,41 @@ class DetailViewController: BaseViewController {
             make.height.greaterThanOrEqualToSuperview()
         }
         
-        titleLabel.styleText(.large30, .iSemibold, .white, .left)
-        contentView.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(2*LARGE_GAP)
-            make.left.equalToSuperview().inset(LARGE_GAP)
-            make.right.equalToSuperview().inset(2*LARGE_GAP + 50)
-        }
-        
         contentView.addSubview(dismissButton)
         dismissButton.snp.makeConstraints { make in
-            make.centerY.equalTo(titleLabel)
+            make.top.equalToSuperview().inset(LARGE_GAP)
             make.right.equalToSuperview().inset(LARGE_GAP)
             make.size.equalTo(50)
-            make.left.equalTo(titleLabel.snp.right).offset(LARGE_GAP)
+
         }
         dismissButton.imageView?.contentMode = .scaleAspectFill
         dismissButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-        dismissButton.tintColor = .white
+        dismissButton.tintColor = .black
         dismissButton.addTarget(self, action: #selector(dismissButtonTapped), for: .touchUpInside)
+
         
         let posterBG = UIView()
-        posterBG.layer.cornerRadius = 40
         posterBG.addShadow(.black, 0.3)
         contentView.addSubview(posterBG)
         posterBG.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(LARGE_GAP)
-            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(LARGE_GAP)
+            make.left.equalToSuperview()
+            make.height.lessThanOrEqualTo(200)
+            make.width.lessThanOrEqualToSuperview().dividedBy(2)
         }
         
         posterView.contentMode = .scaleAspectFit
-        posterView.layer.cornerRadius = posterBG.layer.cornerRadius
-        posterView.clipsToBounds = true
         posterBG.addSubview(posterView)
         posterView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        titleLabel.styleText(.large26, .iSemibold, .darkText, .left)
+        contentView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(posterBG.snp.bottom).offset(LARGE_GAP)
+            make.left.equalToSuperview().inset(LARGE_GAP)
+            make.right.equalToSuperview().inset(2*LARGE_GAP + 50)
         }
         
         typeLabel.setDetailStyle(with: AppLocalization.text(.DETAIL_TYPE_TITLE))
@@ -164,7 +177,7 @@ class DetailViewController: BaseViewController {
         let topStack = self.setStack([typeLabel, yearLabel, ratingLabel, runtimeLabel])
         self.contentView.addSubview(topStack)
         topStack.snp.makeConstraints { make in
-            make.top.equalTo(posterView.snp.bottom).offset(LARGE_GAP)
+            make.top.equalTo(titleLabel.snp.bottom).offset(LARGE_GAP)
             make.left.right.equalToSuperview().inset(LARGE_GAP)
         }
                 
@@ -234,26 +247,32 @@ class DetailViewController: BaseViewController {
             posterView.kf.setImage(with: posterURL)
         }
         titleLabel.text = movie.title
-        self.setRatingTextAndColor(movie.rating)
-        directorLabel.appendAndFormatText(AppLocalization.text(.DETAIL_DIRECTOR_TITLE), movie.director)
-        writerLabel.appendAndFormatText(AppLocalization.text(.DETAIL_WRITER_TITLE), movie.writer)
-        yearLabel.appendAndFormatText(AppLocalization.text(.DETAIL_YEAR_TITLE), movie.year)
-        genreLabel.appendAndFormatText(AppLocalization.text(.DETAIL_GENRE_TITLE), movie.genre)
-        awardsLabel.appendAndFormatText(AppLocalization.text(.DETAIL_AWARDS_TITLE), movie.awards)
-        productionLabel.appendAndFormatText(AppLocalization.text(.DETAIL_PRODUCTION_TITLE), movie.production)
-        typeLabel.appendAndFormatText(AppLocalization.text(.DETAIL_TYPE_TITLE), movie.type)
-        runtimeLabel.appendAndFormatText(AppLocalization.text(.DETAIL_RUNTIME_TITLE), movie.runtime)
-        plotLabel.appendAndFormatText(AppLocalization.text(.DETAIL_PLOT_TITLE), movie.plot)
+        self.setRatingText(movie.rating)
+        directorLabel.setText(AppLocalization.text(.DETAIL_DIRECTOR_TITLE), movie.director)
+        writerLabel.setText(AppLocalization.text(.DETAIL_WRITER_TITLE), movie.writer)
+        yearLabel.setText(AppLocalization.text(.DETAIL_YEAR_TITLE), movie.year)
+        genreLabel.setText(AppLocalization.text(.DETAIL_GENRE_TITLE), movie.genre)
+        awardsLabel.setText(AppLocalization.text(.DETAIL_AWARDS_TITLE), movie.awards)
+        productionLabel.setText(AppLocalization.text(.DETAIL_PRODUCTION_TITLE), movie.production)
+        typeLabel.setText(AppLocalization.text(.DETAIL_TYPE_TITLE), movie.type)
+        runtimeLabel.setText(AppLocalization.text(.DETAIL_RUNTIME_TITLE), movie.runtime)
+        plotLabel.setText(AppLocalization.text(.DETAIL_PLOT_TITLE), movie.plot)
     }
     
-    private func setRatingTextAndColor(_ imdbRating: String) {
+    private func setRatingText(_ imdbRating: String) {
         let rating = Double(imdbRating) ?? 0
         let ratingColor = RatingColor.setColor(rating)
-        ratingLabel.appendAndFormatText(AppLocalization.text(.DETAIL_RATING_TITLE), imdbRating, ratingColor.color)
+        ratingLabel.setText(AppLocalization.text(.DETAIL_RATING_TITLE), imdbRating, ratingColor.color)
+    }
+    
+    //MARK: - Actions
+    
+    @IBAction func dismissButtonTapped() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
-//MARK: - GET DETAIL RESPONSE
+//MARK: - Display Logic
 
 extension DetailViewController: DetailDisplayLogic {
     func getFetchedDetail(viewModel: Detail.FetchRequest.ViewModel) {
@@ -266,36 +285,5 @@ extension DetailViewController: DetailDisplayLogic {
         self.presentAlert(message: error)
         self.stopLoading()
     }    
-}
-
-//MARK: - RATING COLOR ENUM
-
-enum RatingColor {
-    case low
-    case medium
-    case high
-
-    var color: UIColor {
-        switch self {
-        case .low:
-            return .systemOrange
-        case .medium:
-            return UIColor(red: 253/256, green: 252/256, blue: 71/256, alpha: 1)
-        case .high:
-            return UIColor(red: 36/256, green: 254/256, blue: 65/256, alpha: 1)
-        }
-    }
-
-    static func setColor(_ rating: Double) -> RatingColor {
-        var color: RatingColor = .low
-        if rating < 5 {
-            color = .low
-        } else if rating >= 5 && rating < 8 {
-            color = .medium
-        } else {
-            color = .high
-        }
-        return color
-    }
 }
 

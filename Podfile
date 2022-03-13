@@ -13,7 +13,6 @@ target 'mApp' do
 	pod ‘Firebase/RemoteConfig’
   	pod 'Firebase/Messaging'
 	pod 'Alamofire', '~> 5.0.0-rc.2'
-	pod 'AlamofireObjectMapper'
 	pod 'Kingfisher'
 	pod 'Localize-Swift'
 end
@@ -30,7 +29,6 @@ target 'mAppTests' do
 	pod ‘Firebase/RemoteConfig’
   	pod 'Firebase/Messaging'
 	pod 'Alamofire', '~> 5.0.0-rc.2'
-	pod 'AlamofireObjectMapper'
 	pod 'Kingfisher'
 	pod 'Localize-Swift'
 end

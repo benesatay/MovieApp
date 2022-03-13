@@ -13,17 +13,14 @@
 import UIKit
 
 class DetailWorker {
-    func getSelectedMovie(_ req: ContentDetailRequest, onSuccess: @escaping (ContentDetailResponse) -> Void, onError: @escaping (String) -> Void) {
-        RequestManager.get(.series, ContentDetailResponse.self, req.toJSON()) { response, error in
-            guard error == nil else {
-                onError(error!.localizedDescription)
-                return }
-            if let response = response {
-                onSuccess(response)
-                
-            } else {
-                onError(APIError.dataNotFound.localizedDescription)
-            }
+    func fetchSelectedMovie(_ req: ContentDetailRequest) async -> (model: ContentDetailResponse?, error: Error?) {
+        do {
+            let params = req.convertToDictionary()
+            let data = try await RequestManager.request(.series, params)
+            let model = try JSONDecoder().decode(ContentDetailResponse.self, from: data)
+            return (model: model, error: nil)
+        } catch {
+            return (model: nil, error: error)
         }
     }
 }

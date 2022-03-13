@@ -14,7 +14,7 @@ import UIKit
 
 protocol ContentListPresentationLogic: AnyObject {
     func presentSeries(response: ContentList.FetchRequest.Response)
-    func presentError(_ error: Error)
+    func presentError(_ error: String)
 }
 
 class ContentListPresenter {
@@ -28,10 +28,10 @@ extension ContentListPresenter: ContentListPresentationLogic {
             .filter{$0.title != nil && $0.year != nil && $0.poster != nil && $0.imdbID != nil}
             .map{ return ContentList.FetchRequest.ViewModel.SeriesData(name: $0.title!, year: $0.year!, image: $0.poster!, id: $0.imdbID!) }
         let viewModel = ContentList.FetchRequest.ViewModel(keyword: response.keyword, seriesData: contentList)
-        viewController?.getFetchedSeries(viewModel)
+        viewController?.displaySeries(viewModel)
     }
     
-    func presentError(_ error: Error) {
-        viewController?.presentError(error)
+    func presentError(_ error: String) {
+        viewController?.displayError(error)
     }
 }
